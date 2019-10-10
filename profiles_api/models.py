@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-"""These are the standard base classes that you need to use when overwriting or customizing the default Django user model."""
 from django.contrib.auth.models import BaseUserManager
+"""These are the standard base classes that you need to use when overwriting or customizing the default Django user model."""
+
 
 
 class UserProfileManager(BaseUserManager):
@@ -36,12 +37,12 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
    is_active = models.BooleanField(default=True)
    is_staff = models.BooleanField(default=False)
    
-   # objects = UserProfileManager()
+   objects = UserProfileManager()
 
    USERNAME_FIELD = 'email'
    """when we authenticate users instead of them providing a user name and password they're just going to provide that email adress
    and pasword"""
-   REQUIRED_FIELDS = ['name','surname']
+   REQUIRED_FIELDS = ['name']
 
 
    def get_full_name(self):
